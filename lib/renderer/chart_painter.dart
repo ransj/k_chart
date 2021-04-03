@@ -369,4 +369,31 @@ class ChartPainter extends BaseChartPainter {
   bool isInSecondaryRect(Offset point) {
     return mSecondaryRect?.contains(point) ?? false;
   }
+
+  @override
+  void drawCurrentMarkLine(Canvas canvas, Size size) {
+    var index = datas.length - 1;
+    KLineEntity point = getItem(index);
+    if(mMainHighMaxValue < point.close || mMainLowMinValue > point.close) {
+      return;
+    }
+    double y = getMainY(point.close);
+
+    Paint paintX = Paint()
+      ..color = Colors.red
+      ..strokeWidth = ChartStyle.hCrossWidth
+      ..style = PaintingStyle.fill
+      ..isAntiAlias = true;
+    // k线图横线
+    canvas.drawPath(dashPath(0, mWidth, y, 6, 3), paintX);
+  }
+
+  Path dashPath(double start, double end, double y, double strokeWidth, double strokeGap) {
+    final path = new Path();
+    final height = ChartStyle.hCrossWidth * 2;
+    for (double i = start; i < end; i++) {
+      path.addRect(Rect.fromLTWH(i * (strokeWidth + strokeGap), y - height, strokeWidth, height));
+    }
+    return path;
+  }
 }

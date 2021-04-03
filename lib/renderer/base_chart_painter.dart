@@ -91,6 +91,7 @@ abstract class BaseChartPainter extends CustomPainter {
       drawDate(canvas, size);
       if (isLongPress == true) drawCrossLineText(canvas, size);
       drawText(canvas, datas?.last, 5);
+      drawCurrentMarkLine(canvas, size);
       drawMaxAndMin(canvas);
       drawNowPrice(canvas);
     }
@@ -125,6 +126,9 @@ abstract class BaseChartPainter extends CustomPainter {
 
   //交叉线值
   void drawCrossLineText(Canvas canvas, Size size);
+
+  //绘制当前值得标线
+  void drawCurrentMarkLine(Canvas canvas, Size size);
 
   void initRect(Size size) {
     double volHeight = volHidden != true ? mDisplayHeight * 0.2 : 0;

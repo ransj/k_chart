@@ -65,7 +65,7 @@ class KChartWidget extends StatefulWidget {
     this.flingTime = 600,
     this.flingRatio = 0.5,
     this.flingCurve = Curves.decelerate,
-    this.isOnDrag
+    this.isOnDrag,
   }) : assert(maDayList != null);
 
   @override
