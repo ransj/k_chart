@@ -396,4 +396,9 @@ class ChartPainter extends BaseChartPainter {
     }
     return path;
   }
+
+  /// 点是否在SecondaryRect中
+  bool isInSecondaryRect(Offset point) {
+    return mSecondaryRect?.contains(point) ?? false;
+  }
 }
